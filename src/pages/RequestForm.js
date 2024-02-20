@@ -47,7 +47,7 @@ export default function RequestForm() {
                 placeholder="How many guests are you expection?"
                 required
               />
-              <label htmlFor="eventDate">Your Name:<span>*</span></label>
+              <label htmlFor="eventDate">Event Date:<span>*</span></label>
               <input
                 type="date"
                 id="eventDate"

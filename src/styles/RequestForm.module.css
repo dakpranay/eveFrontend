@@ -34,7 +34,7 @@
     color: red;
   }
 
-  p:nth-of-type(2) {
+  .mainFormWrapper>p:nth-of-type(2) {
     color: gray;
   }
 
