@@ -15,6 +15,10 @@ export default function Header() {
         setMobileView(false)
     }
 
+    function handleProfileClick(){
+        setMobileView(false)
+    }
+
 
     let nav_link = [{
         path: '/home',
@@ -48,7 +52,8 @@ export default function Header() {
 
                 <div className={styles.headerButtonWrapper}>
                     <NavLink to='/login'><button className={`${styles.headerButton} ${styles.sec_button} `}>Login</button></NavLink>
-                    <NavLink to='signup'><button className={`${styles.headerButton} ${styles.primary_button}`}>Signup</button></NavLink>
+                    <NavLink to='/signup'><button className={`${styles.headerButton} ${styles.primary_button}`}>Signup</button></NavLink>
+                    <NavLink to='/profile'><button className={`${styles.headerButton} ${styles.profile_button} `} title='profile'>👤</button></NavLink>
                     {mobileView && <button className={`${styles.headerButton} ${styles.cross}`} onClick={handleCrossClick}>&#x2715;</button>}
                     {!mobileView && <button className={`${styles.headerButton} ${styles.hamburger}`} onClick={handleHamburgerClick}>&#x2630;</button>}
                 </div>
@@ -57,6 +62,7 @@ export default function Header() {
                 <ul>
                    <NavLink to='/login' onClick={handleCrossClick}><li>Login</li></NavLink>
                    <NavLink to='/signup' onClick={handleCrossClick}><li>Signup</li></NavLink>
+                   <NavLink to='/profile' onClick={handleProfileClick}><li>Profile</li></NavLink>
                     {nav_link.map((item, index) => (
                             <NavLink to={item.path} key={index} onClick={handleCrossClick}><li>{item.display}</li></NavLink>
                     ))}

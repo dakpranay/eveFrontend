@@ -109,6 +109,13 @@
     display: none;
 }
 
+.profile_button{
+    justify-content: center;
+    align-items: center;
+    font-size: xx-large;
+    padding: 0px;
+
+}
 
 @media (max-width: 749px) {
     .headerMenu {
@@ -121,7 +128,7 @@
       background-color: #333;
     }
 
-    .primary_button,.sec_button{
+    .primary_button,.sec_button,.profile_button{
         display: none;
     }
 
