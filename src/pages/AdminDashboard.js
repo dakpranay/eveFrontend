@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import AdminMenuHeader from '../components/AdminDashboardC/AdminMenuHeader/AdminMenuHeader'
 import styles from '../styles/AdminDashboard.module.css'
 // import AdminHomePage from './AdminHomePage'
@@ -8,9 +8,10 @@ import AdminSearch from '../components/AdminDashboardC/AdminSearch/AdminSearch'
 
 
 export default function AdminDashboard() {
+  const [venueUpdate,setVenueupdate]=useState(true)
   return (
     <div className={styles.adminDashboardWrapper}>
-      <AdminMenuHeader />
+      <AdminMenuHeader venueUpdate={venueUpdate} setVenueupdate={setVenueupdate}/>
       <AdminSearch />
       <div className={styles.adminHomeCardWrapper}>
         <AdminHomeCard />

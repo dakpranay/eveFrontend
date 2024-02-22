@@ -8,7 +8,7 @@ export default function AdminMenuHeader() {
   return (
     <div className={styles.adminMenuHeaderWrapper}>
       <Link to='/admin'><button>🏠 Home</button></Link>
-      <Link to='/admin/inqueries'><button>📩 Enquires</button></Link>
+      <Link to='/admin/inqueries'><button>📩 Requests</button></Link>
       <Link to='/admin/venue'><button>📝 Create Venue</button></Link>
     </div>
   )

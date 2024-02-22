@@ -49,7 +49,8 @@
     justify-content: space-between;
 }
 
-.homeCardVenueDetailsWrapper>div:nth-child(3)>button{
+.homeCardVenueDetailsWrapper>div:nth-child(3)>button,
+.homeCardVenueDetailsWrapper>div:nth-child(3)>a>button{
     padding: 5px 15px;
     border: none;
     outline: none;
@@ -63,7 +64,8 @@
     color: white;
 }
 
-.homeCardVenueDetailsWrapper>div:nth-child(3)>button:nth-child(2){
+.homeCardVenueDetailsWrapper>div:nth-child(3)>button:nth-child(2),
+.homeCardVenueDetailsWrapper>div:nth-child(3)>a>button:nth-child(1){
     background-color: greenyellow;
     color: #333;
 }

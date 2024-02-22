@@ -15,7 +15,7 @@ export default function AdminHomeCard() {
                 <h4>Nice to have you </h4>
                 <div>
                     <button>Delete</button>
-                    <button>Update</button>
+                    <Link to='/admin/venue/:venueid?'><button>Update</button></Link>
                 </div>
             </div>
 
