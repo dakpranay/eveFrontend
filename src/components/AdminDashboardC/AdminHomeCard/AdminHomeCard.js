@@ -3,7 +3,12 @@ import { Link } from 'react-router-dom'
 import styles from './AdminHomeCard.module.css'
 
 
-export default function AdminHomeCard() {
+export default function AdminHomeCard({updateVenue,setUpdatevenue}) {
+
+    function handleUpdate(){
+        setUpdatevenue(true)
+    }
+
     return (
         <div className={styles.adminHomeCardWrapper}>
             <img src='5starvenue.jpg' alt="location" />
@@ -15,7 +20,7 @@ export default function AdminHomeCard() {
                 <h4>Nice to have you </h4>
                 <div>
                     <button>Delete</button>
-                    <Link to='/admin/venue/:venueid?'><button>Update</button></Link>
+                    <Link to='/admin/venue/:venueid?'><button onClick={handleUpdate}>Update</button></Link>
                 </div>
             </div>
 

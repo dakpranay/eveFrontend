@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState } from 'react'
 import {Routes,Route,Navigate} from 'react-router-dom'
 import Home from '../pages/Home'
 import Login from '../pages/Login'
@@ -14,6 +14,7 @@ import Inquires from '../pages/Inquiry'
 import NotFound from '../pages/NotFound'
 
 export default function Router(){
+    const [updateVenue,setUpdatevenue]=useState(false)
     return (
        <Routes>
         <Route path='/' element={<Navigate to='/home'/>}/>
@@ -25,9 +26,9 @@ export default function Router(){
         <Route path='/request' element={<RequestForm/>}/>   
         <Route path='/profile' element={<ProfilePage/>}/>   
         <Route path='/updatePassword' element={<UpdatePassword/>}/>   
-        <Route path='/admin' element={<AdminDashboard/>}/>   
-        <Route path='admin/venue/:venueId?' element={<CreateVenue/>}/>   
-        <Route path='admin/inqueries' element={<Inquires/>}/>   
+        <Route path='/admin' element={<AdminDashboard updateVenue={updateVenue} setUpdatevenue={setUpdatevenue}/>}/>   
+        <Route path='admin/venue/:venueId?' element={<CreateVenue updateVenue={updateVenue} setUpdatevenue={setUpdatevenue}/>}/>   
+        <Route path='admin/inqueries' element={<Inquires updateVenue={updateVenue} setUpdatevenue={setUpdatevenue}/>}/>   
         <Route path='*' element={<NotFound/>}/>
        </Routes>
     )

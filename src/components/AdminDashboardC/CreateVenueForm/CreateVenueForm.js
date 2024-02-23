@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './CreateVenueForm.module.css'
 
-export default function CreateVenueForm() {
+export default function CreateVenueForm({updateVenue}) {
     return (
         <div className={styles.formWrapper}>
             <div className={styles.mainFormWrapper}>
@@ -101,7 +101,7 @@ export default function CreateVenueForm() {
 
 
                     <div className={styles.formButton}>
-                        <button>Create Venue</button>
+                        <button>{updateVenue?"Update":"Create"} Venue</button>
                     </div>
                 </form>
             </div>

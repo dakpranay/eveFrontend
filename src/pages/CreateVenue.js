@@ -4,14 +4,14 @@ import AdminCreateVImageU from '../components/AdminDashboardC/AdminCreateVImageU
 import styles from '../styles/CreateVenue.module.css'
 import CreateVenueForm from '../components/AdminDashboardC/CreateVenueForm/CreateVenueForm'
 
-export default function CreateVenue() {
+export default function CreateVenue({updateVenue,setUpdatevenue}) {
   return (
     <>
-      <AdminMenuHeader />
+      <AdminMenuHeader updateVenue={updateVenue} setUpdatevenue={setUpdatevenue}/>
       <div className={styles.createVenueInnerWrapper}>
-        <p className={styles.title}>Create venue</p>
+        <p className={styles.title}>{updateVenue?"Update":"Create"} Venue</p>
         <AdminCreateVImageU />
-        <CreateVenueForm/>
+        <CreateVenueForm updateVenue={updateVenue}/>
       </div>
 
 
