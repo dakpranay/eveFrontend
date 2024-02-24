@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import bgImg from './5starvenue.jpg';
 import { useForm } from 'react-hook-form';
-import '../styles/Login.css'
+import axios from 'axios';
+import '../styles/Login.css';
+import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie'; // Import the Cookies library
+
+
 
 const StyledSection = styled.section`
   display: flex;
@@ -13,7 +18,6 @@ const StyledSection = styled.section`
 
 const StyledRegisterDiv = styled.div`
   display: flex;
-  
   justify-content: center;
 `;
 
@@ -33,9 +37,8 @@ const StyledInput = styled.input`
   margin: 5px;
   border-radius: 5px;
   border: 1px solid #ccc;
-  width:100%;
+  width: 100%;
 `;
-
 
 const StyledButton = styled.button`
   padding: 10px 30px;
@@ -45,43 +48,60 @@ const StyledButton = styled.button`
   color: #fff;
   border: none;
   cursor: pointer;
-  
 
   &:hover {
-    background-color: #0056b3; /* New button color on hover */
+    background-color: #0056b3;
   }
 `;
-export default function Login(){
-    const { register, handleSubmit } = useForm();
-    const onSubmit = data => console.log(data);
-    return (
-        <StyledSection style={{backgroundColor:'#6CA6CD'}}>
-        <StyledRegisterDiv className="register">
-          <div className="col-2" >
-            <img src={bgImg} alt=""  />
-          </div>
-          <StyledCol1Div className="col-1">
-            <h2>Login</h2>
-            
-  
-            <StyledForm id='form' className='flex flex-col' onSubmit={handleSubmit(onSubmit)}>
-              <StyledInput type="text" {...register("username")} placeholder='Username' required />
-              <StyledInput type="password" {...register("password")} placeholder='password'  required/>
-              <label>
-          <input
-            type="checkbox"
-            style={{marginRight:"10px"}}
-          />
-           I agree to the terms and conditions
-        </label>
-              <StyledButton type="submit" className='btn' 
-              
-              >Login</StyledButton>
-            </StyledForm>
-                
-          </StyledCol1Div>
-        </StyledRegisterDiv>
-      </StyledSection>
 
-    )
+export default function Login() {
+  const { register, handleSubmit } = useForm();
+  const [errorMessage, setErrorMessage] = useState(null);
+  const navigate = useNavigate();
+
+
+
+  const onSubmit = async (data) => {
+    try {
+      const response=await axios.post('http://localhost:3001/user/login', {
+        email: data.email,
+        password: data.password,
+      });
+
+      const { token } = response.data;
+      Cookies.set('jwt', token); 
+
+      setErrorMessage('Login successful')
+      navigate('/home');
+    } catch (error) {
+      setErrorMessage(error.response.data.status)
+    }
+  };
+
+  return (
+    <StyledSection style={{ backgroundColor: '#6CA6CD' }}>
+      <StyledRegisterDiv className="register">
+        <div className="col-2">
+          <img src={bgImg} alt="" />
+        </div>
+        <StyledCol1Div className="col-1">
+          <h2>Login</h2>
+
+          <StyledForm id='form' className='flex flex-col' onSubmit={handleSubmit(onSubmit)}>
+            <StyledInput type="text" {...register('email')} placeholder='Email' required />
+            <StyledInput type="password" {...register('password')} placeholder='Password' required />
+            <label>
+              <input
+                type="checkbox"
+                style={{ marginRight: '10px' }}
+              />
+              I agree to the terms and conditions
+            </label>
+            {errorMessage && <p className="error">{errorMessage}</p>}
+            <StyledButton type="submit" className='btn'>Login</StyledButton>
+          </StyledForm>
+        </StyledCol1Div>
+      </StyledRegisterDiv>
+    </StyledSection>
+  );
 }

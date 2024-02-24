@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import styles from './Header.module.css';
 import { Link } from 'react-router-dom';
 
-export default function Header() {
+export default function Header({islogedIn}) {
 
     const [mobileView, setMobileView] = useState(false)
 
@@ -29,7 +29,7 @@ export default function Header() {
         display: "About"
     },
     {
-        path: '/venues',
+        path: '/venue',
         display: "Venues"
     }
     ]

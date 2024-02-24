@@ -20,8 +20,8 @@ export default function Router(){
         <Route path='/' element={<Navigate to='/home'/>}/>
         <Route path='/home' element={<Home/>}/>
         <Route path='/login' element={<Login/>}/>
-        <Route path='/signup' element={<Signup/>}/>
-        <Route path='/venues' element={<Venues/>}/>
+        <Route path='/signup' element={<Signup />}/>
+        <Route path='/venue' element={<Venues/>}/>
         <Route path='/venue/:venueId' element={<VenueDetails/>}/>
         <Route path='/request' element={<RequestForm/>}/>   
         <Route path='/profile' element={<ProfilePage/>}/>   

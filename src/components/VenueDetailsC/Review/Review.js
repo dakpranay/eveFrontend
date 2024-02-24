@@ -2,7 +2,11 @@ import React from 'react'
 import styles from './review.module.css'
 import ReviewCard from './ReviewCard/ReviewCard'
 
-export default function Review() {
+export default function Review({ venueData }) {
+  
+
+    let reviews = venueData.data.reviews
+
     return (
         <div className={styles.reviewWrapper}>
             <div>
@@ -18,15 +22,17 @@ export default function Review() {
                 </div>
 
                 <div>
-                    <input type="text" placeholder='Share your thoughts'/>
+                    <input type="text" placeholder='Share your thoughts' />
                     <button>Sumit</button>
                 </div>
 
                 <div>
+                    {reviews.map((review, i) => {
+                        return <ReviewCard review={review}/>
+                    })}
+                    {/* <ReviewCard/>
                     <ReviewCard/>
-                    <ReviewCard/>
-                    <ReviewCard/>
-                    <ReviewCard/>
+                    <ReviewCard/> */}
                 </div>
             </div>
 

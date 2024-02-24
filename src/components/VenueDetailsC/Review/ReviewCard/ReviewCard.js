@@ -1,7 +1,8 @@
 import React from 'react'
 import styles from './ReveiwCard.module.css'
 
-export default function ReviewCard() {
+export default function ReviewCard({review}) {
+
   return (
     <>
     <div className={styles.reviewCardWrapper}>
@@ -9,11 +10,11 @@ export default function ReviewCard() {
             <p>👤</p>
         </div>
         <div>
-            <p>Name</p>
-            <p>date</p>
-            <p>review</p>
+            <p>{review.user.userName}</p>
+            <p>{review.createdAt.slice(0, 10)}</p>
+            <p>{review.review}</p>
         </div>
-        <p>⭐ 5</p>
+        <p>⭐ {review.rating}</p>
     </div>
     <hr style={{marginTop:"20px",marginBottom:"10px"}}/>
     </>
