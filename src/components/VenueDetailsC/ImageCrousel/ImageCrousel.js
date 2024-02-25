@@ -4,27 +4,25 @@ import { Carousel } from 'react-responsive-carousel';
 import styles from './ImageCrousel.module.css'
 
 export default function ImageCrousel({ venueData }) {
-  // let venueImages = (venueData.data.venueImages)
-  let venueImages=[{image:{
-    url:'../delhi.jpg'
-  }}]
+  let venueImages=venueData.data.venueImages
+ 
   return (
-    <Carousel showArrows={true} showThumbs={false} autoPlay interval={5000} infiniteLoop showStatus={false}>
+    <Carousel showArrows={false} showThumbs={false} autoPlay interval={5000} infiniteLoop showStatus={false} >
       {/* error:not showing images */}
-      {/* {venueImages.map((image, i) => {
-        <div className={styles.imageWrapper}>
+      {venueImages.map((image,i) => {
+        return <div className={styles.imageWrapper}>
           <img src={image.image.url} alt='nice' />
         </div>
-      })} */}
+      })}
 
 
-      <div className={styles.imageWrapper}>
+      {/* <div className={styles.imageWrapper}>
         <img src="../delhi.jpg" alt='nice' />
       </div>
 
       <div className={styles.imageWrapper}>
         <img src="../5starvenue.jpg" alt='nice' />
-      </div>
+      </div> */}
     </Carousel>
   )
 }

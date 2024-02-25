@@ -24,6 +24,15 @@
   cursor: pointer;
 }
 
+.adminHomeCardWrapper{
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  padding: 50px;
+  padding-top: 20px;
+}
+
 .adminSearchWrapper > div > button:hover {
   background-color: #d7101a;
 }
@@ -46,5 +55,9 @@
   .adminSearchWrapper > div > button {
     padding: 10px;
     font-size: 18px;
+  }
+
+  .adminHomeCardWrapper{
+    padding: 15px;
   }
 }

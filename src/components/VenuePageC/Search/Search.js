@@ -10,13 +10,14 @@ export default function Search() {
     const [searchParams, setSearchParams] = useSearchParams();
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
-    const [venue, setVenue] = useState('');
-    const event = searchParams.get('event')
+    const [name, setName] = useState('');
     const [data, setData] = useState([])
+    
 
 
     useEffect(() => {
         if (searchParams.size >= 0) {
+            console.log(searchParams)
             
             axios.get(`http://localhost:3001/venue`,{ params: searchParams })
                 .then(response => {
@@ -25,9 +26,7 @@ export default function Search() {
                 .catch(error => {
                     console.error('Error fetching data:');
                 });
-        } else {
-
-        }
+        } 
 
     }, [searchParams]);
 
@@ -35,22 +34,21 @@ export default function Search() {
     const handleSearch = () => {
         const lowercaseCity = city.toLowerCase();
         const lowercaseState = state.toLowerCase();
-        const lowercaseVenue = venue.toLowerCase();
+        const lowercaseVenue = name.toLowerCase();
         const queryParams = {};
 
-        if (event !== null) {
-            queryParams.event = event;
-        }
         if (city !== '') {
             queryParams.city = lowercaseCity;
         }
         if (state !== '') {
             queryParams.state = lowercaseState;
         }
-        if (venue !== '') {
-            queryParams.venue = lowercaseVenue;
+        if (name !== '') {
+            queryParams.name = lowercaseVenue;
         }
-        console.log(queryParams)
+        setCity('')
+        setState('')
+        setName('')
         setSearchParams(queryParams);
     };
 
@@ -86,10 +84,10 @@ export default function Search() {
                     <input
                         type="text"
                         id="venueInput"
-                        name="venueName"
+                        name="name"
                         placeholder="Seacrching by venue name"
-                        value={venue}
-                        onChange={(e) => setVenue(e.target.value)}
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
                     />
                 </div>
                 <div>

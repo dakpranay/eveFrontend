@@ -11,23 +11,7 @@ export default function AdminDashboard({updateVenue,setUpdatevenue}) {
   return (
     <div className={styles.adminDashboardWrapper}>
       <AdminMenuHeader updateVenue={updateVenue} setUpdatevenue={setUpdatevenue}/>
-      <AdminSearch />
-      <div className={styles.adminHomeCardWrapper}>
-        <AdminHomeCard updateVenue={updateVenue} setUpdatevenue={setUpdatevenue}/>
-        {/* <AdminHomeCard />
-        <AdminHomeCard />
-        <AdminHomeCard />
-        <AdminHomeCard />
-        <AdminHomeCard />
-        <AdminHomeCard />
-        <AdminHomeCard />
-        <AdminHomeCard />
-        <AdminHomeCard />
-        <AdminHomeCard />
-        <AdminHomeCard />
-        <AdminHomeCard /> */}
-      </div>
-
+      <AdminSearch updateVenue={updateVenue} setUpdatevenue={setUpdatevenue}/>
     </div>
   )
 }

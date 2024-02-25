@@ -36,7 +36,6 @@ export default function VenueDetails() {
                 <div>
                     {/* image */}
                     <div>
-                        {/* error */}
                         <ImageCrousel venueData={venueData}/>
                     </div>
                     <VenueDetailsDes venueData={venueData}/>

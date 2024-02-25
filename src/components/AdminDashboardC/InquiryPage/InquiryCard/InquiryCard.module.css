@@ -1,7 +1,7 @@
 .inquiryCardWrapper {
   display: flex;
-  width: 80%;
   margin: 20px 0px;
+  width: 100%;
   align-items: center;
   padding: 20px 30px;
   border-radius: 5px;

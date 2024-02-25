@@ -1,17 +1,89 @@
-import React from 'react'
+import React, {useState } from 'react'
 import styles from '../styles/RequestForm.module.css'
+import axios from 'axios';
 
 export default function RequestForm() {
+  
+  const instance = axios.create({
+    withCredentials: true,
+    baseURL: 'http://localhost:3001',
+  });
+
+  const [message, setMessage] = useState(null);
+
+
+
+  const [formData, setFormData] = useState({
+    event: '',
+    city: '',
+    expectedGuests: '',
+    eventDate: '',
+    mobileNumber: '',
+    state: '',
+    perPersonBudget: '',
+    name: '',
+    email: '',
+  });
+
+  const handleChange = (e) => {
+    setMessage('')
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const toLowerCaseFormData = () => {
+    const lowerCaseData = {};
+    for (const key in formData) {
+      if (formData.hasOwnProperty(key)) {
+        lowerCaseData[key] = formData[key].toLowerCase();
+      }
+    }
+    return lowerCaseData;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const data = toLowerCaseFormData();
+
+
+    // Use formData in your logic, for example, making an API request with axios
+    instance.post('/request',{data})
+      .then(response => {
+        setMessage('Requested sucessfully')
+        setFormData({
+          event: '',
+          city: '',
+          expectedGuests: '',
+          eventDate: '',
+          mobileNumber: '',
+          state: '',
+          perPersonBudget: '',
+          name: '',
+          email: '',
+        });
+      })
+      .catch(error => {
+        console.error('API Request Error:', error);
+        setMessage(error.response.data.status);
+      });
+
+    // Clear form fields or handle other actions after form submission
+    
+  };
+
   return (
     <div className={styles.formWrapper}>
       <div className={styles.mainFormWrapper}>
         <h1>Get Quotes</h1>
         <p>Get best suited venues for your event</p>
         <p>Compare proposals and quotes from recommended venues. Select and Book the best.</p>
-        <form action="">
+        <form onSubmit={handleSubmit}>
           <div className={styles.eventSelector}>
-            <label htmlFor="eventOccasion">Event/Occasion:<span>*</span></label>
-            <select id="eventOccasion" name="eventOccasion" required defaultValue="">
+            <label htmlFor="event">Event/Occasion:<span>*</span></label>
+            <select id="eventOccasion" name="event" required  value={formData.event} onChange={handleChange}>
               <option value="" disabled hidden>What type of event you planning for ?</option>
               <option value="wedding">Wedding</option>
               <option value="Wedding Reception ">Wedding Reception </option>
@@ -38,14 +110,17 @@ export default function RequestForm() {
                 name="city"
                 placeholder="Enter your city"
                 required
+                value={formData.city}
+                onChange={handleChange}
               />
-              <label htmlFor="expectedGuest">Expected Guest:<span>*</span></label>
+              <label htmlFor="expectedGuests">Expected Guest:<span>*</span></label>
               <input
                 type="number"
-                id="expectedGuest"
-                name="sexpectedGuest"
+                id="expectedGuests"
+                name="expectedGuests"
                 placeholder="How many guests are you expection?"
                 required
+                onChange={handleChange}
               />
               <label htmlFor="eventDate">Event Date:<span>*</span></label>
               <input
@@ -53,6 +128,8 @@ export default function RequestForm() {
                 id="eventDate"
                 name="eventDate"
                 required
+                value={formData.eventDate}
+                onChange={handleChange}
               />
               <label htmlFor="mobileNumber">Mobile Number:<span>*</span></label>
               <input
@@ -61,8 +138,8 @@ export default function RequestForm() {
                 name="mobileNumber"
                 required
                 placeholder="Enter your mobile number"
-
-                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                value={formData.mobileNumber}
+                onChange={handleChange}
 
               />
 
@@ -75,14 +152,18 @@ export default function RequestForm() {
                 name="state"
                 placeholder="Enter your state"
                 required
+                value={formData.state}
+                onChange={handleChange}
               />
               <label htmlFor="perPersonbudget">Per Person Budget:<span>*</span></label>
               <input
                 type="number"
-                id="perPersonbudget"
-                name="perPersonbudget"
+                id="perPersonBudget"
+                name="perPersonBudget"
                 placeholder="Per person budget"
                 required
+                value={formData.perPersonBudget}
+                onChange={handleChange}
               />
               <label htmlFor="name">Your Name:<span>*</span></label>
               <input
@@ -91,6 +172,8 @@ export default function RequestForm() {
                 name="name"
                 placeholder="Your name"
                 required
+                value={formData.name}
+                onChange={handleChange}
               />
               <label htmlFor="email">Email Id:<span>*</span></label>
               <input
@@ -99,18 +182,17 @@ export default function RequestForm() {
                 name="email"
                 placeholder="Enter your email"
                 required
+                value={formData.email}
+                onChange={handleChange}
               />
-              
-
-
             </div>
           </div>
 
-
           <div className={styles.formButton}>
-            <button>Create Inquiry</button>
+            <button type="submit">Create Inquiry</button>
           </div>
         </form>
+        {message && <p className="error">{message}</p>}
       </div>
     </div>
   )

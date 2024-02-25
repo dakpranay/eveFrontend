@@ -60,7 +60,6 @@ export default function Login() {
   const navigate = useNavigate();
 
 
-
   const onSubmit = async (data) => {
     try {
       const response=await axios.post('http://localhost:3001/user/login', {
@@ -68,7 +67,7 @@ export default function Login() {
         password: data.password,
       });
 
-      const { token } = response.data;
+      const { token } = await response.data;
       Cookies.set('jwt', token); 
 
       setErrorMessage('Login successful')
