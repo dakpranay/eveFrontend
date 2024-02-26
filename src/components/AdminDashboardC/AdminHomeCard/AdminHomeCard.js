@@ -44,8 +44,8 @@ export default function AdminHomeCard({ updateVenue, setUpdatevenue, venue, erro
                 </div>
                 <h4>{venue.name}</h4>
                 <div>
-                    <button onClick={handleDelete}>Delete</button>
-                    <Link to='/admin/venue/:venueid?'><button onClick={handleUpdate}>Update</button></Link>
+                    <button onClick={handleDelete} style={{width:'100%'}}>Delete</button>
+                    {/* <Link to='/admin/venue/:venueid?'><button onClick={handleUpdate}>Update</button></Link> */}
                 </div>
             </div>
         </div>

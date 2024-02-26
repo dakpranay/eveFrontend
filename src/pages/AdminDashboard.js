@@ -3,7 +3,7 @@ import AdminMenuHeader from '../components/AdminDashboardC/AdminMenuHeader/Admin
 import styles from '../styles/AdminDashboard.module.css'
 // import AdminHomePage from './AdminHomePage'
 // import { Navigate, Route, Routes} from 'react-router-dom'
-import AdminHomeCard from '../components/AdminDashboardC/AdminHomeCard/AdminHomeCard'
+// import AdminHomeCard from '../components/AdminDashboardC/AdminHomeCard/AdminHomeCard'
 import AdminSearch from '../components/AdminDashboardC/AdminSearch/AdminSearch'
 
 

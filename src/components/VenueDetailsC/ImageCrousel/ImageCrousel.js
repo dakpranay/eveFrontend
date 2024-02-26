@@ -7,7 +7,7 @@ export default function ImageCrousel({ venueData }) {
   let venueImages=venueData.data.venueImages
  
   return (
-    <Carousel showArrows={false} showThumbs={false} autoPlay interval={5000} infiniteLoop showStatus={false} >
+    <Carousel showArrows={false} showThumbs={false} autoPlay interval={4000} infiniteLoop showStatus={false} >
       {/* error:not showing images */}
       {venueImages.map((image,i) => {
         return <div className={styles.imageWrapper}>

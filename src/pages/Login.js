@@ -69,6 +69,7 @@ export default function Login() {
 
       const { token } = await response.data;
       Cookies.set('jwt', token); 
+      console.log(response.data)
 
       setErrorMessage('Login successful')
       navigate('/home');

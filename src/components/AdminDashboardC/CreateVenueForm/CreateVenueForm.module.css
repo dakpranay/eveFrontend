@@ -93,7 +93,7 @@
   }
 
   .addressWrapper>textarea{
-    font-size: x-large;
+    font-size: large;
     height: fit-content;
     resize: none;
   }

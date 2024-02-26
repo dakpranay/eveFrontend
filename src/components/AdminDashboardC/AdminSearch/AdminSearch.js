@@ -98,6 +98,7 @@ export default function AdminSearch({ updateVenue, setUpdatevenue }) {
                 </div>
             </form>
             {errorMessage && <p className="error" style={{textAlign:'center',marginTop:'10px'}}>{errorMessage} </p>}
+            { loading && <div style={{textAlign:'center',marginTop:'10px'}}>Loading...</div>}
             {!loading && data.length==0 && <p style={{textAlign:'center',marginTop:'10px'}}>No result found</p>}
 
 
@@ -106,7 +107,6 @@ export default function AdminSearch({ updateVenue, setUpdatevenue }) {
                     return <AdminHomeCard updateVenue={updateVenue} setUpdatevenue={setUpdatevenue} venue={venue} errorMessage={errorMessage} setErrorMessage={setErrorMessage}/>
                 })}
             </div>}
-            {loading && <div style={{textAlign:'center',marginTop:'10px'}}>Loading...</div>}
         </>
     );
 }

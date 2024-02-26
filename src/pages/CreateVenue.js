@@ -9,12 +9,10 @@ export default function CreateVenue({updateVenue,setUpdatevenue}) {
     <>
       <AdminMenuHeader updateVenue={updateVenue} setUpdatevenue={setUpdatevenue}/>
       <div className={styles.createVenueInnerWrapper}>
-        <p className={styles.title}>{updateVenue?"Update":"Create"} Venue</p>
-        <AdminCreateVImageU />
+        <p className={styles.title}>Create Venue</p>
+        {/* <AdminCreateVImageU /> */}
         <CreateVenueForm updateVenue={updateVenue}/>
       </div>
-
-
     </>
 
   )
