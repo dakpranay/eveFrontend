@@ -54,7 +54,7 @@ const StyledButton = styled.button`
   }
 `;
 
-export default function Login() {
+export default function Login({handleLogin,handleUserType}) {
   const { register, handleSubmit } = useForm();
   const [errorMessage, setErrorMessage] = useState(null);
   const navigate = useNavigate();
@@ -62,6 +62,7 @@ export default function Login() {
 
   const onSubmit = async (data) => {
     try {
+      console.log(data)
       const response=await axios.post('http://localhost:3001/user/login', {
         email: data.email,
         password: data.password,
@@ -69,9 +70,11 @@ export default function Login() {
 
       const { token } = await response.data;
       Cookies.set('jwt', token); 
-      console.log(response.data)
-
+      console.log(response)
+      handleUserType(response.data.user.userType)
+     
       setErrorMessage('Login successful')
+      handleLogin()
       navigate('/home');
     } catch (error) {
       setErrorMessage(error.response.data.status)

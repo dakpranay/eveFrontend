@@ -73,6 +73,7 @@ export default function AdminCreateVImageU({selectedImages,setSelectedImages,upl
           multiple
           accept="image/*"
           onChange={imageHandleChange}
+          
         />
         <label htmlFor="uploadBtn">
           <span>⬆️</span>Upload Photos

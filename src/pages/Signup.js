@@ -6,7 +6,7 @@ import '../styles/Login.css';
 import { useNavigate } from 'react-router-dom';
 
 
-export default function Signup() {
+export default function Signup({handleLogin}) {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         userName: '',
@@ -48,6 +48,7 @@ export default function Signup() {
         try {
             await axios.post('http://localhost:3001/user/signup', data);
             setErrorMessage('register successfully');
+            handleLogin()
             navigate('/home');
         } catch (error) {
             if (error.response && error.response.status === 500) {

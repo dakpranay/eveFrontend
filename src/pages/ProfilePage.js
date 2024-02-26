@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
 
-export default function ProfilePage() {
+export default function ProfilePage({isLoggedIn,handleLogout,userType}) {
     const [editable, setEditable] = useState(false)
     const [message, setMessage] = useState(null);
     const [userName, setUserName] = useState('')
@@ -59,12 +59,13 @@ export default function ProfilePage() {
         });
     }
 
-    const handleLogout = async () => {
+    const logout = async () => {
         instance.get('/user/logout')
             .then(response => {
 
                 setMessage('Logout successful')
                 Cookies.remove('jwt')
+                handleLogout()
                 navigate('/login')
                 // window.location.href = '/login';
             })
@@ -89,13 +90,13 @@ export default function ProfilePage() {
                 </form>
                 {message && <p className="error">{message}</p>}
 
-                {!editable && <button onClick={handleEdit} className={styles.editButton}>Edit</button>}
+                {!editable && isLoggedIn&& <button onClick={handleEdit} className={styles.editButton}>Edit</button>}
                 {editable && <button onClick={handleSave} className={styles.saveButton}>Save</button>}
-                <button onClick={handleLogout} className={styles.saveButton}>Logout</button>
+                {isLoggedIn && <button onClick={logout} className={styles.saveButton}>Logout</button>}
 
-                <Link to='/updatePassword'><button className={styles.updatepassword}>Update Password</button></Link>
-                <Link to='/admin' ><button className={styles.dashoboardButton}>DashBoard</button></Link>
-
+                {isLoggedIn && <Link to='/updatePassword'><button className={styles.updatepassword}>Update Password</button></Link>}
+                {isLoggedIn && userType=='admin' &&<Link to='/admin' ><button className={styles.dashoboardButton}>DashBoard</button></Link>
+}
             </div>
         </div>
     )

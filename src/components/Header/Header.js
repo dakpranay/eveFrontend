@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import styles from './Header.module.css';
 import { Link } from 'react-router-dom';
 
-export default function Header({islogedIn}) {
+export default function Header({isLoggedIn}) {
 
     const [mobileView, setMobileView] = useState(false)
 
@@ -51,9 +51,9 @@ export default function Header({islogedIn}) {
                 </div>
 
                 <div className={styles.headerButtonWrapper}>
-                    <NavLink to='/login'><button className={`${styles.headerButton} ${styles.sec_button} `}>Login</button></NavLink>
-                    <NavLink to='/signup'><button className={`${styles.headerButton} ${styles.primary_button}`}>Signup</button></NavLink>
-                    <NavLink to='/profile'><button className={`${styles.headerButton} ${styles.profile_button} `} title='profile'>👤</button></NavLink>
+                    {!isLoggedIn &&<NavLink to='/login'><button className={`${styles.headerButton} ${styles.sec_button} `}>Login</button></NavLink>}
+                    {!isLoggedIn&&<NavLink to='/signup'><button className={`${styles.headerButton} ${styles.primary_button}`}>Signup</button></NavLink>}
+                    {isLoggedIn && <NavLink to='/profile'><button className={`${styles.headerButton} ${styles.profile_button} `} title='profile'>👤</button></NavLink>}
                     {mobileView && <button className={`${styles.headerButton} ${styles.cross}`} onClick={handleCrossClick}>&#x2715;</button>}
                     {!mobileView && <button className={`${styles.headerButton} ${styles.hamburger}`} onClick={handleHamburgerClick}>&#x2630;</button>}
                 </div>
